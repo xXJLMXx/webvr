@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>False Hope</title>
+    <meta name="description" content="Failure">
+
+    
+    
+    <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    
+    <script src="https://unpkg.com/aframe-audioanalyser-component@^3.0.3/dist/aframe-audioanalyser-component.min.js"></script>
+
+    
+    <script src="https://unpkg.com/aframe-extras.ocean@%5E3.5.x/dist/aframe-extras.ocean.min.js"></script>
+    <script src="https://unpkg.com/aframe-gradient-sky@1.0.4/dist/gradientsky.min.js"></script>
+    
+     
+    
+  </head>
+  <body>
+    <a-scene>
+      <a-entity id="rain" particle-system="preset: rain; color: #830303; particleCount: 10000"></a-entity>
+
+     <a-assets>
+        <img id="t" src="https://cdn.glitch.com/60aaf504-3fa6-4fdb-a12f-e1ba5746ee8c%2F276565.jpg?1499215493766">
+      </a-assets>
+      
+      <a-mixin id="box"  material="color: #F55" animation="property: rotation; to: 0 45 0"></a-mixin>
+      
+      <audio id="song" src="https://cdn.glitch.com/60aaf504-3fa6-4fdb-a12f-e1ba5746ee8c%2FChill%20Volca%20Fm%20%26%20Sample.mp3?1510369078336"></audio>
+      
+      
+      <a-entity
+      audioanalyser="src: #song"
+      
+    ></a-entity>
+      
+      
+      
+      <a-entity id="container" position="0 2 -8">
+        
+        audioanalyser="src: #song"
+        
+        <a-box src="#t" mixin="box" position="-2 2 -2" animation="loop: 1"></a-box>
+        <a-box src="#t" mixin="box" position="0 2 -2" animation="loop: 4"></a-box>
+        <a-box src="#t" mixin="box" position="2 2 -2" animation="loop: 8"></a-box>
+
+        <a-box src="#t" mixin="box" position="-2 0 -2" animation="dir: alternate; loop: 1"></a-box>
+        <a-box src="#t" mixin="box" position="0 0 -2" animation="dir: alternate; loop: 4"></a-box>
+        <a-box src="#t" mixin="box" position="2 0 -2" animation="dir: alternate; loop: 8"></a-box>
+      </a-entity>
+      
+      
+      <a-entity sound="autoplay: true; loop: true; src: #song;"></a-entity>
+      
+      
+      <a-assets>
+        <a-mixin id="cube" geometry="primitive: box; depth: 1; height: 1; width: 1"
+                 material="color: #FFF">
+        </a-mixin>
+        <a-mixin id="secondary" material="color: #000"></a-mixin>
+      </a-assets>
+
+     
+
+      <a-entity layout="type: circle; radius: 2.5" position="0 3 -5">
+        <a-animation attribute="rotation" dur="5000" easing="linear"
+                     repeat="indefinite" to="0 360 360">
+        </a-animation>
+        <a-entity mixin="cube" position="-10 -4 4"></a-entity>
+        <a-entity mixin="cube" position="-4 5 11"></a-entity>
+        <a-entity mixin="cube" position="-8 2 3"></a-entity>
+        <a-entity mixin="cube" position="5 -2 6"></a-entity>
+        <a-entity mixin="cube" position="22 17 -4"></a-entity>
+        <a-entity mixin="cube" position="-13 -27 15"></a-entity>
+        <a-entity mixin="cube" ></a-entity>
+        <a-entity mixin="cube" ></a-entity>
+      </a-entity>
+      
+            
+      
+      
+
+      <a-entity layout="type: circle; radius: 3" position="0 3 -5">
+        <a-animation attribute="rotation" dur="5000" easing="linear"
+                     repeat="indefinite" to="360 0 360">
+        </a-animation>
+        <a-entity mixin="cube secondary"></a-entity>
+        <a-entity mixin="cube secondary"></a-entity>
+        <a-entity mixin="cube secondary"></a-entity>
+        <a-entity mixin="cube secondary"></a-entity>
+        <a-entity mixin="cube secondary"></a-entity>
+        <a-entity mixin="cube secondary"></a-entity>
+        <a-entity mixin="cube secondary"></a-entity>
+        <a-entity mixin="cube secondary"></a-entity>
+      </a-entity>
+            
+      
+
+      
+       <a-assets>
+        <a-mixin id="sphere" geometry="primitive: sphere; radius: 0.2">
+        </a-mixin>
+
+        <a-mixin id="random-1"
+                 random-spherical-position="lengthX: 180; lengthY: 180; radius: 10"></a-mixin>
+        <a-mixin id="random-2" random-spherical-position="radius: 30"></a-mixin>
+        <a-mixin id="random-3" random-spherical-position="radius: 50"></a-mixin>
+
+        <a-mixin id="red" material="color: #FF4B68"></a-mixin>
+        <a-mixin id="blue" material="color: #118DF0"></a-mixin>
+        <a-mixin id="yellow" material="color: #FBFFA3"></a-mixin>
+      </a-assets>
+
+      <a-entity entity-generator="mixin: random-1 red sphere; num: 500"></a-entity>
+      <a-entity entity-generator="mixin: random-2 blue sphere; num: 800">
+        <a-animation attribute="rotation" repeat="indefinite" easing="linear"
+                     dur="128000" to="0 360 0"></a-animation>
+      </a-entity>
+      <a-entity entity-generator="mixin: random-3 yellow sphere; num: 2000"></a-entity>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <a-assets>
+        <img id="ground" src="https://cdn.glitch.com/60aaf504-3fa6-4fdb-a12f-e1ba5746ee8c%2Fpolygon-8000x6000-4k-5k-wallpaper-8k-3d-cube-green-orange-blue-249.jpg?1499216135567">
+      </a-assets>
+
+        <!-- Textured plane parallel to ground. -->
+        <a-plane src="#ground" height="100" width="100" rotation="-90 0 0"></a-plane>
+      
+      <a-entity id="ocean" ocean="density: 20; width: 50; depth: 50; speed: 4"
+                material="color: #000; opacity: 0.75; metalness: 0; roughness: 1"
+                rotation="-90 0 0"></a-entity>
+      
+      
+  
+
+      <a-assets>
+        <video id="video" src="https://cdn.glitch.com/60aaf504-3fa6-4fdb-a12f-e1ba5746ee8c%2FSong%20Intro.mp4?1499140266396"></video>
+      </a-assets>
+      <a-videosphere src="#video"></a-videosphere>
+
+      
+      
+          
+    </a-scene>
+                                      
+  <script type="text/javascript">
+    var scene = document.querySelector("a-scene");
+    var vid = document.getElementById("video");
+
+    if (scene.hasLoaded) {
+      run();
+    } else {
+      scene.addEventListener("loaded", run);
+    }
+
+    function run () {
+        scene.querySelector(".a-enter-vr-button").addEventListener("click", function(e){
+            console.log("VR Mode entered");
+            this.style.display = "none";
+            vid.play();
+        }, false);
+    }
+</script>
+  </body>
+</html>
